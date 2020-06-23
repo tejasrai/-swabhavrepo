@@ -1,0 +1,19 @@
+<form (ngSubmit)="onSubmit(); studentRegForm.reset()" #studentRegForm="ngForm">
+  <label>Name</label>
+  <input name="name" [(ngModel)]="studentReg.name" required #trackName="ngModel">
+  
+  <br />
+  <select name="branch" [(ngModel)]="studentReg.branch" required>
+    <option *ngFor="let branch of branches" [value]="branch">{{branch}}</option>
+  </select>
+
+  <br />
+  <label><input type="radio" name="hasBacklog" [(ngModel)]="studentReg.hasBacklog" [value]="true">Has backlog </label>
+  <label><input type="radio" name="hasBacklog" [(ngModel)]="studentReg.hasBacklog" [value]="false">No backlog </label>
+
+  <br />
+  <input type="submit" value="Save" [disabled]="!studentRegForm.form.valid">
+</form>
+{{studentRegForm.value | json}}
+{{studentRegForm.valid}}
+<pre>{{ getCurrentReg() }}</pre>
